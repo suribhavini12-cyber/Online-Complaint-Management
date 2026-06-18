@@ -30,28 +30,18 @@ const Sidebar = ({ open, onToggle }) => {
 
     const filteredItems = menuItems.filter(item => item.roles.includes(user?.role));
 
-    return (
-        <Drawer
-            variant="permanent"
-            sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                [`& .MuiDrawer-paper`]: { 
-                    width: drawerWidth, 
-                    boxSizing: 'border-box',
-                    bgcolor: 'background.paper',
-                    borderRight: '1px solid rgba(100, 255, 218, 0.1)'
-                },
-                display: { xs: open ? 'block' : 'none', sm: 'block' }
-            }}
-        >
+    const drawerContent = (
+        <>
             <Toolbar />
             <Box sx={{ overflow: 'auto', py: 2 }}>
                 <List>
                     {filteredItems.map((item) => (
                         <ListItemButton 
                             key={item.text} 
-                            onClick={() => navigate(item.path)}
+                            onClick={() => {
+                                navigate(item.path);
+                                if (open) onToggle();
+                            }}
                             selected={location.pathname === item.path}
                             sx={{
                                 mb: 1,
@@ -72,7 +62,47 @@ const Sidebar = ({ open, onToggle }) => {
                     ))}
                 </List>
             </Box>
-        </Drawer>
+        </>
+    );
+
+    return (
+        <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+            {/* Mobile Drawer (Temporary overlay) */}
+            <Drawer
+                variant="temporary"
+                open={open}
+                onClose={onToggle}
+                ModalProps={{ keepMounted: true }}
+                sx={{
+                    display: { xs: 'block', sm: 'none' },
+                    [`& .MuiDrawer-paper`]: { 
+                        width: drawerWidth, 
+                        boxSizing: 'border-box',
+                        bgcolor: 'background.paper',
+                        borderRight: '1px solid rgba(100, 255, 218, 0.1)'
+                    },
+                }}
+            >
+                {drawerContent}
+            </Drawer>
+
+            {/* Desktop Drawer (Permanent sidebar) */}
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: 'none', sm: 'block' },
+                    [`& .MuiDrawer-paper`]: { 
+                        width: drawerWidth, 
+                        boxSizing: 'border-box',
+                        bgcolor: 'background.paper',
+                        borderRight: '1px solid rgba(100, 255, 218, 0.1)'
+                    },
+                }}
+                open
+            >
+                {drawerContent}
+            </Drawer>
+        </Box>
     );
 };
 
