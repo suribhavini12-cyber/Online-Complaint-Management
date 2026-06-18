@@ -5,6 +5,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PeopleIcon from '@mui/icons-material/People';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import HelpIcon from '@mui/icons-material/Help';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -18,10 +20,12 @@ const Sidebar = ({ open, onToggle }) => {
     const menuItems = [
         { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard', roles: ['user', 'agent', 'admin'] },
         { text: 'New Complaint', icon: <AddCircleIcon />, path: '/dashboard/create', roles: ['user'] },
+        { text: 'Track Complaint', icon: <TrackChangesIcon />, path: '/dashboard/track', roles: ['user', 'agent', 'admin'] },
         { text: user?.role === 'admin' ? 'Manage Complaints' : 'My Complaints', icon: <AssignmentIcon />, path: '/dashboard/complaints', roles: ['user', 'admin'] },
         { text: 'Assigned Tasks', icon: <AssignmentIcon />, path: '/dashboard/assigned', roles: ['agent'] },
         { text: 'Manage Users', icon: <PeopleIcon />, path: '/dashboard/users', roles: ['admin'] },
         { text: 'Analytics', icon: <AnalyticsIcon />, path: '/dashboard/analytics', roles: ['admin'] },
+        { text: 'Filing Guide', icon: <HelpIcon />, path: '/guide', roles: ['user', 'agent', 'admin'] },
     ];
 
     const filteredItems = menuItems.filter(item => item.roles.includes(user?.role));

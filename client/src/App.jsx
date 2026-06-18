@@ -20,6 +20,9 @@ import MyComplaints from './pages/MyComplaints';
 import AssignedTasks from './pages/AssignedTasks';
 import ManageUsers from './pages/ManageUsers';
 import AnalyticsPage from './pages/AnalyticsPage';
+import FileGuide from './pages/FileGuide';
+import ComplaintTracking from './pages/ComplaintTracking';
+import Chatbot from './components/Chatbot';
 
 const ProtectedRoute = ({ children, roles }) => {
     const { user, loading } = useAuth();
@@ -40,6 +43,23 @@ function App() {
                     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
                         <Routes>
                             <Route path="/" element={<Home />} />
+                            <Route path="/guide" element={<FileGuide />} />
+                            <Route 
+                                path="/dashboard/track" 
+                                element={
+                                    <ProtectedRoute>
+                                        <ComplaintTracking />
+                                    </ProtectedRoute>
+                                } 
+                            />
+                            <Route 
+                                path="/dashboard/track/:id" 
+                                element={
+                                    <ProtectedRoute>
+                                        <ComplaintTracking />
+                                    </ProtectedRoute>
+                                } 
+                            />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -110,6 +130,7 @@ function App() {
                             />
                         </Routes>
                     </Box>
+                    <Chatbot />
                     <ToastContainer position="bottom-right" theme="dark" />
                 </Router>
             </AuthProvider>
