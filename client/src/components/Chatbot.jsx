@@ -38,28 +38,68 @@ const Chatbot = () => {
     };
 
     const getBotResponse = (query) => {
-        const text = query.toLowerCase();
+        const text = query.toLowerCase().trim();
         
-        if (text.includes('file') || text.includes('register') || text.includes('new') || text.includes('submit')) {
-            return 'To file a complaint:\n1. Log in to your account.\n2. Navigate to "New Complaint" in the sidebar.\n3. Fill in the Title, Description, Category, Priority, and Location details.\n4. Click "Submit Complaint". The system will automatically route your ticket to a dedicated support specialist.';
+        // Help / menu / options / guide
+        if (text === 'help' || text === 'menu' || text === 'options' || text === 'guide' || text === 'start' || text === 'info') {
+            return 'You can ask me questions about:\n1. Filing a complaint ("how to file a complaint", "raise a ticket", "give a complaint")\n2. Tracking a complaint ("track status", "view progress", "check status")\n3. Response & resolution time ("resolution SLA", "how long will it take")\n4. How agents are assigned ("auto-assignment", "who is handling my ticket")\n5. Talking to your agent ("chat with agent", "send message")\n6. Resetting your password ("forgot password")';
         }
-        if (text.includes('track') || text.includes('status') || text.includes('progress') || text.includes('stage')) {
+
+        // Greetings
+        if (text === 'hi' || text === 'hello' || text === 'hey' || text === 'greetings' || text.startsWith('hi ') || text.startsWith('hello ') || text.startsWith('hey ')) {
+            return 'Hi there! How can I assist you with OCRMS today? You can ask about filing or tracking complaints, SLA times, agent assignment, or direct messaging.';
+        }
+
+        // Track / status / progress / check / check status / history / where is my
+        if (
+            text.includes('track') || 
+            text.includes('status') || 
+            text.includes('progress') || 
+            text.includes('stage') || 
+            text.includes('history') ||
+            (text.includes('where') && text.includes('complaint')) ||
+            (text.includes('check') && (text.includes('complaint') || text.includes('ticket') || text.includes('status')))
+        ) {
             return 'To track your complaint:\n1. Open the "Track Complaint" page from the sidebar.\n2. Select your complaint from the dropdown or enter its unique ticket ID.\n3. You will see a live progress stepper showing if it is Pending, Assigned, In Progress, Resolved, or Closed, along with the handling department and agent name.';
         }
-        if (text.includes('sla') || text.includes('time') || text.includes('duration') || text.includes('days') || text.includes('hours')) {
+
+        // File / register / submit / give / raise / create / report / lodge / post / make a complaint
+        if (
+            text.includes('file') || 
+            text.includes('register') || 
+            text.includes('new') || 
+            text.includes('submit') || 
+            text.includes('give') || 
+            text.includes('raise') || 
+            text.includes('report') || 
+            text.includes('create') || 
+            text.includes('post') || 
+            text.includes('add') || 
+            text.includes('lodge') ||
+            (text.includes('make') && text.includes('complaint')) ||
+            text.includes('complaint') // default to filing guide if general complaint keyword is used without track/status
+        ) {
+            return 'To file a complaint:\n1. Log in to your account.\n2. Navigate to "New Complaint" in the sidebar.\n3. Fill in the Title, Description, Category, Priority, and Location details.\n4. Click "Submit Complaint". The system will automatically route your ticket to a dedicated support specialist.';
+        }
+
+        // SLA / time / duration / days / hours / when
+        if (text.includes('sla') || text.includes('time') || text.includes('duration') || text.includes('days') || text.includes('hours') || text.includes('when')) {
             return 'Resolution SLA guidelines:\n* High Priority: Escalated immediately and typically resolved within 12-24 hours.\n* Medium/Low Priority: Actioned within 24 hours; complete resolution within 2-3 business days.\n* You can check live updates in your Ticket details or chat directly with your assigned agent.';
         }
+
+        // Assign / router / agent / who / specialist
         if (text.includes('assign') || text.includes('router') || text.includes('agent') || text.includes('who') || text.includes('specialist')) {
             return 'OCRMS uses an intelligent workload-balancing classifier service. When you file a complaint, the router checks the category (Technical, Billing, Service, Security, Other) and assigns the ticket to the support agent specializing in that sector who has the lowest active workload.';
         }
-        if (text.includes('login') || text.includes('password') || text.includes('reset') || text.includes('forgot')) {
+
+        // Login / password / reset / forgot
+        if (text.includes('login') || text.includes('password') || text.includes('reset') || text.includes('forgot') || text.includes('auth')) {
             return 'If you forgot your password:\n1. Go to the login page.\n2. Click the "Forgot Password" link below the login form.\n3. Enter your registered email address to receive password reset instructions.';
         }
+
+        // Chat / message / speak / talk
         if (text.includes('chat') || text.includes('message') || text.includes('speak') || text.includes('talk')) {
             return 'Yes, you can talk to your assigned agent! Go to "My Complaints", click "View Details" on your ticket, and use the real-time chat box on the right side of the page to message your agent directly.';
-        }
-        if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('greetings')) {
-            return 'Hi there! How can I assist you with OCRMS today? You can ask about filing, tracking, or support agents.';
         }
         
         return "I am not sure I understand that query. Try asking about 'how to file a complaint', 'tracking status', 'resolution time', or choose one of the quick options below!";

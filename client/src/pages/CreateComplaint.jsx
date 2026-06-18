@@ -171,152 +171,153 @@ const CreateComplaint = () => {
                             </Typography>
                             
                             <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
-                                <Grid container spacing={3}>
-                                    <Grid item xs={12}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                label="Title"
-                                                fullWidth
-                                                value={formData.title}
-                                                onChange={(e) => setFormData({...formData, title: e.target.value})}
-                                                required
-                                                sx={inputStyles}
-                                            />
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12} md={6}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                select
-                                                label="Category"
-                                                fullWidth
-                                                value={formData.category}
-                                                onChange={(e) => setFormData({...formData, category: e.target.value})}
-                                                sx={inputStyles}
-                                            >
-                                                <MenuItem value="Technical">Technical</MenuItem>
-                                                <MenuItem value="Billing">Billing</MenuItem>
-                                                <MenuItem value="Service">Service</MenuItem>
-                                                <MenuItem value="Security">Security</MenuItem>
-                                                <MenuItem value="Other">Other</MenuItem>
-                                            </TextField>
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12} md={6}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                select
-                                                label="Priority"
-                                                fullWidth
-                                                value={formData.priority}
-                                                onChange={(e) => setFormData({...formData, priority: e.target.value})}
-                                                sx={inputStyles}
-                                            >
-                                                <MenuItem value="Low">Low</MenuItem>
-                                                <MenuItem value="Medium">Medium</MenuItem>
-                                                <MenuItem value="High">High</MenuItem>
-                                            </TextField>
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                label="Description"
-                                                fullWidth
-                                                multiline
-                                                rows={4}
-                                                value={formData.description}
-                                                onChange={(e) => setFormData({...formData, description: e.target.value})}
-                                                required
-                                                sx={inputStyles}
-                                            />
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                label="Address"
-                                                fullWidth
-                                                value={formData.address}
-                                                onChange={(e) => setFormData({...formData, address: e.target.value})}
-                                                required
-                                                sx={inputStyles}
-                                            />
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                select
-                                                label="State"
-                                                fullWidth
-                                                value={formData.state}
-                                                onChange={handleStateChange}
-                                                required
-                                                sx={inputStyles}
-                                            >
-                                                {Object.keys(stateCitiesData).map((state) => (
-                                                    <MenuItem key={state} value={state}>
-                                                        {state}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                select
-                                                label="City"
-                                                fullWidth
-                                                value={formData.city}
-                                                onChange={(e) => setFormData({...formData, city: e.target.value})}
-                                                required
-                                                disabled={!formData.state}
-                                                sx={inputStyles}
-                                            >
-                                                {formData.state && stateCitiesData[formData.state].map((city) => (
-                                                    <MenuItem key={city} value={city}>
-                                                        {city}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <motion.div variants={itemVariants}>
-                                            <TextField
-                                                label="Pincode"
-                                                fullWidth
-                                                value={formData.pincode}
-                                                onChange={(e) => setFormData({...formData, pincode: e.target.value})}
-                                                required
-                                                sx={inputStyles}
-                                            />
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <motion.div variants={itemVariants}>
-                                            <Button 
-                                                type="submit" 
-                                                variant="contained" 
-                                                color="secondary" 
-                                                fullWidth 
-                                                size="large"
-                                                sx={{
-                                                    py: 1.5,
-                                                    fontSize: '1.05rem',
-                                                    boxShadow: '0 8px 25px rgba(100, 255, 218, 0.15)',
-                                                    '&:hover': {
-                                                        boxShadow: '0 12px 30px rgba(100, 255, 218, 0.35)',
-                                                    }
-                                                }}
-                                            >
-                                                Submit Complaint
-                                            </Button>
-                                        </motion.div>
-                                    </Grid>
-                                </Grid>
+                                <Stack spacing={3}>
+                                    <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                        <TextField
+                                            label="Title"
+                                            fullWidth
+                                            value={formData.title}
+                                            onChange={(e) => setFormData({...formData, title: e.target.value})}
+                                            required
+                                            sx={inputStyles}
+                                        />
+                                    </motion.div>
+                                    
+                                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+                                        <Box sx={{ flex: 1 }}>
+                                            <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                                <TextField
+                                                    select
+                                                    label="Category"
+                                                    fullWidth
+                                                    value={formData.category}
+                                                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                                                    sx={inputStyles}
+                                                >
+                                                    <MenuItem value="Technical">Technical</MenuItem>
+                                                    <MenuItem value="Billing">Billing</MenuItem>
+                                                    <MenuItem value="Service">Service</MenuItem>
+                                                    <MenuItem value="Security">Security</MenuItem>
+                                                    <MenuItem value="Other">Other</MenuItem>
+                                                </TextField>
+                                            </motion.div>
+                                        </Box>
+                                        <Box sx={{ flex: 1 }}>
+                                            <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                                <TextField
+                                                    select
+                                                    label="Priority"
+                                                    fullWidth
+                                                    value={formData.priority}
+                                                    onChange={(e) => setFormData({...formData, priority: e.target.value})}
+                                                    sx={inputStyles}
+                                                >
+                                                    <MenuItem value="Low">Low</MenuItem>
+                                                    <MenuItem value="Medium">Medium</MenuItem>
+                                                    <MenuItem value="High">High</MenuItem>
+                                                </TextField>
+                                            </motion.div>
+                                        </Box>
+                                    </Stack>
+                                    
+                                    <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                        <TextField
+                                            label="Description"
+                                            fullWidth
+                                            multiline
+                                            rows={4}
+                                            value={formData.description}
+                                            onChange={(e) => setFormData({...formData, description: e.target.value})}
+                                            required
+                                            sx={inputStyles}
+                                        />
+                                    </motion.div>
+                                    
+                                    <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                        <TextField
+                                            label="Address"
+                                            fullWidth
+                                            value={formData.address}
+                                            onChange={(e) => setFormData({...formData, address: e.target.value})}
+                                            required
+                                            sx={inputStyles}
+                                        />
+                                    </motion.div>
+                                    
+                                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+                                        <Box sx={{ flex: 1 }}>
+                                            <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                                <TextField
+                                                    select
+                                                    label="State"
+                                                    fullWidth
+                                                    value={formData.state}
+                                                    onChange={handleStateChange}
+                                                    required
+                                                    sx={inputStyles}
+                                                >
+                                                    {Object.keys(stateCitiesData).map((state) => (
+                                                        <MenuItem key={state} value={state}>
+                                                            {state}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </motion.div>
+                                        </Box>
+                                        <Box sx={{ flex: 1 }}>
+                                            <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                                <TextField
+                                                    select
+                                                    label="City"
+                                                    fullWidth
+                                                    value={formData.city}
+                                                    onChange={(e) => setFormData({...formData, city: e.target.value})}
+                                                    required
+                                                    disabled={!formData.state}
+                                                    sx={inputStyles}
+                                                >
+                                                    {formData.state && stateCitiesData[formData.state].map((city) => (
+                                                        <MenuItem key={city} value={city}>
+                                                            {city}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </motion.div>
+                                        </Box>
+                                        <Box sx={{ flex: 1 }}>
+                                            <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                                <TextField
+                                                    label="Pincode"
+                                                    fullWidth
+                                                    value={formData.pincode}
+                                                    onChange={(e) => setFormData({...formData, pincode: e.target.value})}
+                                                    required
+                                                    sx={inputStyles}
+                                                />
+                                            </motion.div>
+                                        </Box>
+                                    </Stack>
+                                    
+                                    <motion.div variants={itemVariants} style={{ width: '100%' }}>
+                                        <Button 
+                                            type="submit" 
+                                            variant="contained" 
+                                            color="secondary" 
+                                            fullWidth 
+                                            size="large"
+                                            sx={{
+                                                py: 1.5,
+                                                fontSize: '1.05rem',
+                                                boxShadow: '0 8px 25px rgba(100, 255, 218, 0.15)',
+                                                '&:hover': {
+                                                    boxShadow: '0 12px 30px rgba(100, 255, 218, 0.35)',
+                                                }
+                                            }}
+                                        >
+                                            Submit Complaint
+                                        </Button>
+                                    </motion.div>
+                                </Stack>
                             </Box>
                         </Paper>
                     </motion.div>
