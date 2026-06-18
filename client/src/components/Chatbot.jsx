@@ -214,7 +214,18 @@ const Chatbot = () => {
                                 <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.5 }}>
                                     Quick Questions:
                                 </Typography>
-                                <Stack direction="row" spacing={1} sx={{ overflowX: 'auto', pb: 1, '&::-webkit-scrollbar': { height: 4 } }}>
+                                <Box sx={{ 
+                                    display: 'flex', 
+                                    gap: 1.5, 
+                                    overflowX: 'auto', 
+                                    pb: 1,
+                                    width: '100%',
+                                    '&::-webkit-scrollbar': { height: 4 },
+                                    '&::-webkit-scrollbar-thumb': {
+                                        background: 'rgba(100, 255, 218, 0.2)',
+                                        borderRadius: 2
+                                    }
+                                }}>
                                     {quickOptions.map((opt) => (
                                         <Button
                                             key={opt.value}
@@ -223,12 +234,14 @@ const Chatbot = () => {
                                             onClick={() => handleSend(opt.label)}
                                             sx={{
                                                 fontSize: '0.75rem',
-                                                py: 0.2,
-                                                px: 1,
+                                                py: 0.5,
+                                                px: 1.5,
                                                 whiteSpace: 'nowrap',
+                                                flexShrink: 0,
                                                 borderColor: 'rgba(100, 255, 218, 0.2)',
                                                 color: 'secondary.main',
                                                 borderRadius: 2,
+                                                textTransform: 'none',
                                                 '&:hover': {
                                                     borderColor: '#64ffda',
                                                     bgcolor: 'rgba(100, 255, 218, 0.05)'
@@ -238,7 +251,7 @@ const Chatbot = () => {
                                             {opt.label.replace('?', '')}
                                         </Button>
                                     ))}
-                                </Stack>
+                                </Box>
                             </Box>
 
                             {/* Input Area */}
