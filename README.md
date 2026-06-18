@@ -34,6 +34,20 @@ All accounts use the default password: `password123`
 
 ---
 
+## ✨ Advanced Interactive Features
+
+Recently, we've implemented several premium features to significantly improve user experience and operational visibility:
+
+1. **Step-by-Step Filing Guide Page**: Mapped to the `/guide` route, this page provides a visual timeline explaining the complaint lifecycle (from submission and workload-based auto-routing to agent chat workspace and final rating resolution). Fully accessible in both public guest mode and authenticated sidebar layouts.
+2. **Persistent Virtual Chatbot Assistant**: A floating, responsive virtual assistant integrated across the application. It parses natural query synonyms (e.g. *give*, *lodge*, *raise*, *track progress*, *expected SLA*) and provides context-aware guidance and instant answers, along with quick suggestion question pills.
+3. **Interactive Complaint Tracking Dashboard**: Mapped to `/dashboard/track`, this feature provides a visual 5-stage stepper (`Pending` -> `Assigned` -> `In Progress` -> `Resolved` -> `Closed`) details about the handling authority (e.g. specialized departments and assigned agent name), and search utility to track any 24-character complaint ID.
+4. **Improved Homepage UI & FAQs**: Modern glassmorphic landing sections with clean visual aesthetics, CTA guides, and a responsive FAQ accordion explaining auto-assignment, workspace chats, and status tracking.
+5. **Responsive Dual Drawer Navigation**: The drawer system dynamically adjusts for different screen sizes:
+   * **Phone/Tablet View (< 600px)**: Sidebar displays as a temporary overlay, sliding gracefully on top of the content without pushing it. Selects close the drawer automatically.
+   * **Desktop View (>= 600px)**: Sidebar renders inline as a permanent sidebar.
+
+---
+
 ## 📂 Project Architecture & Schemas
 
 The application is structured around a multi-model database design linking customers, specialists, real-time messaging, and complaint lifecycles:
