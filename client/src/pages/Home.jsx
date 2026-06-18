@@ -184,37 +184,7 @@ const Home = () => {
                 </Grid>
             </Container>
 
-            {/* Statistics Section */}
-            <Box sx={{ py: 8, bgcolor: 'rgba(10, 25, 47, 0.3)', borderY: '1px solid rgba(100, 255, 218, 0.08)' }}>
-                <Container maxWidth="lg">
-                    <Grid container spacing={4} justifyContent="center" sx={{ textAlign: 'center' }}>
-                        <Grid item xs={6} md={3}>
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-                                <Typography variant="h3" fontWeight={800} color="secondary.main">1,250+</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>Complaints Resolved</Typography>
-                            </motion.div>
-                        </Grid>
-                        <Grid item xs={6} md={3}>
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-                                <Typography variant="h3" fontWeight={800} color="secondary.main">99.4%</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>SLA Compliance Rate</Typography>
-                            </motion.div>
-                        </Grid>
-                        <Grid item xs={6} md={3}>
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                                <Typography variant="h3" fontWeight={800} color="secondary.main">&lt; 2 Hrs</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>Avg Response Time</Typography>
-                            </motion.div>
-                        </Grid>
-                        <Grid item xs={6} md={3}>
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-                                <Typography variant="h3" fontWeight={800} color="secondary.main">100%</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>Auto-Routed Tickets</Typography>
-                            </motion.div>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
+
 
             {/* Features Showcase */}
             <Container maxWidth="lg" sx={{ py: 10, position: 'relative', zIndex: 1 }}>
