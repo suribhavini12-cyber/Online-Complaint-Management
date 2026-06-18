@@ -1,0 +1,12 @@
+[
+  { "text": "refund my money credit card charge billing invoice overcharged pricing payment failed receipt cancel subscription double billing payment dispute", "category": "Billing" },
+  { "text": "cannot pay for subscription invoice issue charge back fee discount bill price plan transaction declined cost card expiration", "category": "Billing" },
+  { "text": "app crashed error code server offline bug in application page not loading slow response lag frozen login failure screen blank", "category": "Technical" },
+  { "text": "network connection timeout database error script broken website down loading times API failure browser display problem interface issue", "category": "Technical" },
+  { "text": "rude agent behavior support staff attitude delay response long response times late delivery service appointment missed bad communication behavior", "category": "Service" },
+  { "text": "polite staff review feedback about service slow help technician behavior response time support ticket delay unhelpful team performance", "category": "Service" },
+  { "text": "account hacked stolen password unauthorized login login attempts suspicious activity spam email security code compromised privacy breach hack", "category": "Security" },
+  { "text": "two factor authentication block recovery link failed identity verification security threat fraud suspicious transfer account locked safety alert", "category": "Security" },
+  { "text": "general question partnership careers feedback suggestion system question inquiry business proposal general feedback information contact request", "category": "Other" },
+  { "text": "other queries request help features review recommendation general suggestion interface design suggestion check status help desk", "category": "Other" }
+]
